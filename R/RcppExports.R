@@ -13,6 +13,34 @@ grpc_version <- function() {
     .Call('_bigrquerystorage_grpc_version', PACKAGE = 'bigrquerystorage')
 }
 
+readfile <- function(filename) {
+    .Call('_bigrquerystorage_readfile', PACKAGE = 'bigrquerystorage', filename)
+}
+
+bqs_client <- function(client_info, service_configuration, refresh_token = "", access_token = "", root_certificate = "", target = "bigquerystorage.googleapis.com:443") {
+    .Call('_bigrquerystorage_bqs_client', PACKAGE = 'bigrquerystorage', client_info, service_configuration, refresh_token, access_token, root_certificate, target)
+}
+
+bqs_method_read_session <- function(client, project, dataset, table, parent, selected_fields, row_restriction = "", timestamp_seconds = 0L, timestamp_nanos = 0L) {
+    .Call('_bigrquerystorage_bqs_method_read_session', PACKAGE = 'bigrquerystorage', client, project, dataset, table, parent, selected_fields, row_restriction, timestamp_seconds, timestamp_nanos)
+}
+
+bqs_read_session_schema <- function(read_session) {
+    .Call('_bigrquerystorage_bqs_read_session_schema', PACKAGE = 'bigrquerystorage', read_session)
+}
+
+bqs_read_session_stream_names <- function(read_session) {
+    .Call('_bigrquerystorage_bqs_read_session_stream_names', PACKAGE = 'bigrquerystorage', read_session)
+}
+
+bqs_method_split_read_stream <- function(client, stream, fraction = 0.5) {
+    .Call('_bigrquerystorage_bqs_method_split_read_stream', PACKAGE = 'bigrquerystorage', client, stream, fraction)
+}
+
+bqs_method_read_rows <- function(client, streams) {
+    .Call('_bigrquerystorage_bqs_method_read_rows', PACKAGE = 'bigrquerystorage', client, streams)
+}
+
 #' @noRd
 bqs_ipc_stream <- function(project, dataset, table, parent, n, client_info, service_configuration, access_token, root_certificate, timestamp_seconds, timestamp_nanos, selected_fields, row_restriction, quiet = FALSE) {
     .Call('_bigrquerystorage_bqs_ipc_stream', PACKAGE = 'bigrquerystorage', project, dataset, table, parent, n, client_info, service_configuration, access_token, root_certificate, timestamp_seconds, timestamp_nanos, selected_fields, row_restriction, quiet)

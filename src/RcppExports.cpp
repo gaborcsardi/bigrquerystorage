@@ -34,6 +34,99 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// readfile
+std::string readfile(std::string filename);
+RcppExport SEXP _bigrquerystorage_readfile(SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(readfile(filename));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_client
+SEXP bqs_client(std::string client_info, std::string service_configuration, std::string refresh_token, std::string access_token, std::string root_certificate, std::string target);
+RcppExport SEXP _bigrquerystorage_bqs_client(SEXP client_infoSEXP, SEXP service_configurationSEXP, SEXP refresh_tokenSEXP, SEXP access_tokenSEXP, SEXP root_certificateSEXP, SEXP targetSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type client_info(client_infoSEXP);
+    Rcpp::traits::input_parameter< std::string >::type service_configuration(service_configurationSEXP);
+    Rcpp::traits::input_parameter< std::string >::type refresh_token(refresh_tokenSEXP);
+    Rcpp::traits::input_parameter< std::string >::type access_token(access_tokenSEXP);
+    Rcpp::traits::input_parameter< std::string >::type root_certificate(root_certificateSEXP);
+    Rcpp::traits::input_parameter< std::string >::type target(targetSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_client(client_info, service_configuration, refresh_token, access_token, root_certificate, target));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_method_read_session
+SEXP bqs_method_read_session(SEXP client, std::string project, std::string dataset, std::string table, std::string parent, std::vector<std::string> selected_fields, std::string row_restriction, std::int64_t timestamp_seconds, std::int32_t timestamp_nanos);
+RcppExport SEXP _bigrquerystorage_bqs_method_read_session(SEXP clientSEXP, SEXP projectSEXP, SEXP datasetSEXP, SEXP tableSEXP, SEXP parentSEXP, SEXP selected_fieldsSEXP, SEXP row_restrictionSEXP, SEXP timestamp_secondsSEXP, SEXP timestamp_nanosSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type client(clientSEXP);
+    Rcpp::traits::input_parameter< std::string >::type project(projectSEXP);
+    Rcpp::traits::input_parameter< std::string >::type dataset(datasetSEXP);
+    Rcpp::traits::input_parameter< std::string >::type table(tableSEXP);
+    Rcpp::traits::input_parameter< std::string >::type parent(parentSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type selected_fields(selected_fieldsSEXP);
+    Rcpp::traits::input_parameter< std::string >::type row_restriction(row_restrictionSEXP);
+    Rcpp::traits::input_parameter< std::int64_t >::type timestamp_seconds(timestamp_secondsSEXP);
+    Rcpp::traits::input_parameter< std::int32_t >::type timestamp_nanos(timestamp_nanosSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_method_read_session(client, project, dataset, table, parent, selected_fields, row_restriction, timestamp_seconds, timestamp_nanos));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_read_session_schema
+std::vector<std::uint8_t> bqs_read_session_schema(SEXP read_session);
+RcppExport SEXP _bigrquerystorage_bqs_read_session_schema(SEXP read_sessionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type read_session(read_sessionSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_read_session_schema(read_session));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_read_session_stream_names
+std::vector<std::string> bqs_read_session_stream_names(SEXP read_session);
+RcppExport SEXP _bigrquerystorage_bqs_read_session_stream_names(SEXP read_sessionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type read_session(read_sessionSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_read_session_stream_names(read_session));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_method_split_read_stream
+std::vector<std::string> bqs_method_split_read_stream(SEXP client, std::string stream, double fraction);
+RcppExport SEXP _bigrquerystorage_bqs_method_split_read_stream(SEXP clientSEXP, SEXP streamSEXP, SEXP fractionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type client(clientSEXP);
+    Rcpp::traits::input_parameter< std::string >::type stream(streamSEXP);
+    Rcpp::traits::input_parameter< double >::type fraction(fractionSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_method_split_read_stream(client, stream, fraction));
+    return rcpp_result_gen;
+END_RCPP
+}
+// bqs_method_read_rows
+std::vector< std::vector<uint8_t> > bqs_method_read_rows(SEXP client, std::vector<std::string> streams);
+RcppExport SEXP _bigrquerystorage_bqs_method_read_rows(SEXP clientSEXP, SEXP streamsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type client(clientSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type streams(streamsSEXP);
+    rcpp_result_gen = Rcpp::wrap(bqs_method_read_rows(client, streams));
+    return rcpp_result_gen;
+END_RCPP
+}
 // bqs_ipc_stream
 SEXP bqs_ipc_stream(std::string project, std::string dataset, std::string table, std::string parent, std::int64_t n, std::string client_info, std::string service_configuration, std::string access_token, std::string root_certificate, std::int64_t timestamp_seconds, std::int32_t timestamp_nanos, std::vector<std::string> selected_fields, std::string row_restriction, bool quiet);
 RcppExport SEXP _bigrquerystorage_bqs_ipc_stream(SEXP projectSEXP, SEXP datasetSEXP, SEXP tableSEXP, SEXP parentSEXP, SEXP nSEXP, SEXP client_infoSEXP, SEXP service_configurationSEXP, SEXP access_tokenSEXP, SEXP root_certificateSEXP, SEXP timestamp_secondsSEXP, SEXP timestamp_nanosSEXP, SEXP selected_fieldsSEXP, SEXP row_restrictionSEXP, SEXP quietSEXP) {
@@ -63,6 +156,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_bigrquerystorage_bqs_set_log_verbosity", (DL_FUNC) &_bigrquerystorage_bqs_set_log_verbosity, 1},
     {"_bigrquerystorage_bqs_init_logger", (DL_FUNC) &_bigrquerystorage_bqs_init_logger, 0},
     {"_bigrquerystorage_grpc_version", (DL_FUNC) &_bigrquerystorage_grpc_version, 0},
+    {"_bigrquerystorage_readfile", (DL_FUNC) &_bigrquerystorage_readfile, 1},
+    {"_bigrquerystorage_bqs_client", (DL_FUNC) &_bigrquerystorage_bqs_client, 6},
+    {"_bigrquerystorage_bqs_method_read_session", (DL_FUNC) &_bigrquerystorage_bqs_method_read_session, 9},
+    {"_bigrquerystorage_bqs_read_session_schema", (DL_FUNC) &_bigrquerystorage_bqs_read_session_schema, 1},
+    {"_bigrquerystorage_bqs_read_session_stream_names", (DL_FUNC) &_bigrquerystorage_bqs_read_session_stream_names, 1},
+    {"_bigrquerystorage_bqs_method_split_read_stream", (DL_FUNC) &_bigrquerystorage_bqs_method_split_read_stream, 3},
+    {"_bigrquerystorage_bqs_method_read_rows", (DL_FUNC) &_bigrquerystorage_bqs_method_read_rows, 2},
     {"_bigrquerystorage_bqs_ipc_stream", (DL_FUNC) &_bigrquerystorage_bqs_ipc_stream, 14},
     {NULL, NULL, 0}
 };

@@ -23,7 +23,8 @@ Suggests:
     wk
 LinkingTo:
     progress,
-    Rcpp
+    Rcpp,
+    RcppThread
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/meztez/bigrquerystorage
