@@ -37,15 +37,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // bqs_client
-SEXP bqs_client(std::string client_info, std::string service_configuration, std::string refresh_token, std::string access_token, std::string root_certificate, std::string target);
+SEXP bqs_client(std::string client_info, std::string service_configuration, grpc::string refresh_token, grpc::string access_token, grpc::string root_certificate, std::string target);
 RcppExport SEXP _bigrquerystorage_bqs_client(SEXP client_infoSEXP, SEXP service_configurationSEXP, SEXP refresh_tokenSEXP, SEXP access_tokenSEXP, SEXP root_certificateSEXP, SEXP targetSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< std::string >::type client_info(client_infoSEXP);
     Rcpp::traits::input_parameter< std::string >::type service_configuration(service_configurationSEXP);
-    Rcpp::traits::input_parameter< std::string >::type refresh_token(refresh_tokenSEXP);
-    Rcpp::traits::input_parameter< std::string >::type access_token(access_tokenSEXP);
-    Rcpp::traits::input_parameter< std::string >::type root_certificate(root_certificateSEXP);
+    Rcpp::traits::input_parameter< grpc::string >::type refresh_token(refresh_tokenSEXP);
+    Rcpp::traits::input_parameter< grpc::string >::type access_token(access_tokenSEXP);
+    Rcpp::traits::input_parameter< grpc::string >::type root_certificate(root_certificateSEXP);
     Rcpp::traits::input_parameter< std::string >::type target(targetSEXP);
     rcpp_result_gen = Rcpp::wrap(bqs_client(client_info, service_configuration, refresh_token, access_token, root_certificate, target));
     return rcpp_result_gen;

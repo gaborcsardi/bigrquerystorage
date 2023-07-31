@@ -57,6 +57,14 @@ std::string readfile(std::string filename)
   return content;
 }
 
+grpc::string readfile2(std::string filename)
+{
+  std::ifstream ifs(filename);
+  grpc::string content( (std::istreambuf_iterator<char>(ifs) ),
+                       (std::istreambuf_iterator<char>()    ) );
+  return content;
+}
+
 // append std::string at the end of a std::vector<uint8_t> vector
 void to_raw(const std::string input, std::vector<uint8_t>* output) {
   output->insert(output->end(), input.begin(), input.end());
@@ -224,7 +232,7 @@ private:
 // -- Credentials functions ----------------------------------------------------
 
 std::shared_ptr<grpc::ChannelCredentials> bqs_ssl(
-    std::string root_certificate) {
+    grpc::string root_certificate) {
   grpc::SslCredentialsOptions ssl_options;
   if (!root_certificate.empty()) {
     ssl_options.pem_root_certs = root_certificate;
@@ -252,14 +260,14 @@ std::shared_ptr<grpc::ChannelCredentials> bqs_google_credentials() {
 }
 
 std::shared_ptr<grpc::ChannelCredentials> bqs_refresh_token_credentials(
-    std::string refresh_token, std::string root_certificate = "") {
+    grpc::string refresh_token, grpc::string root_certificate = "") {
   auto ssl_cred = bqs_ssl(root_certificate);
   auto token_cred = grpc::GoogleRefreshTokenCredentials(refresh_token);
   return bqs_credentials(ssl_cred, token_cred);
 }
 
 std::shared_ptr<grpc::ChannelCredentials> bqs_access_token_credentials(
-    std::string access_token, std::string root_certificate = "") {
+    grpc::string access_token, grpc::string root_certificate = "") {
   auto ssl_cred = bqs_ssl(root_certificate);
   auto token_cred = grpc::AccessTokenCredentials(access_token);
   return bqs_credentials(ssl_cred, token_cred);
@@ -290,19 +298,19 @@ SEXP bqs_read_client(std::shared_ptr<grpc::ChannelCredentials> cred,
 // [[Rcpp::export(rng=false)]]
 SEXP bqs_client(std::string client_info,
                 std::string service_configuration,
-                std::string refresh_token = "",
-                std::string access_token = "",
-                std::string root_certificate = "",
+                grpc::string refresh_token = "",
+                grpc::string access_token = "",
+                grpc::string root_certificate = "",
                 std::string target = "bigquerystorage.googleapis.com:443") {
 
   std::shared_ptr<grpc::ChannelCredentials> cred;
   if (!refresh_token.empty()) {
     cred = bqs_refresh_token_credentials(refresh_token,
-                                         readfile(root_certificate));
+                                         readfile2(root_certificate));
   }
   if (!cred && !access_token.empty()) {
     cred = bqs_access_token_credentials(access_token,
-                                        readfile(root_certificate));
+                                        readfile2(root_certificate));
   }
   if (!cred) {
     cred = bqs_google_credentials();
